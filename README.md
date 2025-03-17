@@ -61,3 +61,35 @@ __NOTE__: More resources can be added. Eg: __--resources=iam,cognito-identity,ec
 #### Result
 
 After the script runs succesfully, it creates a `generated` directory in the current directory with all the results
+
+---
+
+#### Add PoC Ubuntu Docker
+
+##### Pull Ubuntu image
+
+```bash
+docker pull ubuntu
+```
+
+##### Run ubuntu container
+
+```bash
+docker run -it ubuntu:latest /bin/bash
+```
+
+##### Create less privileged user
+
+```bash
+apt-get update
+apt-get upgrade
+apt-get install -y curl gnupg unzip nano sudo wget groff mandoc
+useradd -m shaban
+echo "shaban:password" | chpasswd
+usermod -aG sudo shaban
+su - shaban
+```
+
+Default password: __password__
+
+##### Follow the initial steps above to download, install and run script
