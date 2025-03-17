@@ -58,6 +58,12 @@ terraformer import aws --resources=iam
 
 __NOTE__: More resources can be added. Eg: __--resources=iam,cognito-identity,ec2__
 
+#### Import all resources
+
+```bash
+terraformer import aws --resources="*"
+```
+
 #### Result
 
 After the script runs succesfully, it creates a `generated` directory in the current directory with all the results
