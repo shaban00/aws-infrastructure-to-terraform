@@ -62,7 +62,7 @@ terraformer import aws list
 terraformer import aws --resources=iam
 ```
 
-__NOTE__: More resources can be added. Eg: __--resources=iam,cognito-identity,ec2__
+__NOTE__: More resources can be added. Eg: __--resources=iam,cognito,vpc,sg__
 
 #### Import all resources
 
