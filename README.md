@@ -37,7 +37,6 @@ __AWS Secret Access Key [None]__: paste secrete key
 __Default region name [None]__: enter region
 __Default output format [None]__: enter format. Eg. __json__
 
-
 #### AWS CLI help
 
 ```bash
@@ -77,12 +76,34 @@ After the script runs succesfully, it creates a `generated` directory in the cur
 #### Forward engineering (Terraform to AWS)
 
 - Change directory to the resource you want to forward engineer. Eg: (`cd generated/aws/cognito`)
-- Remove old terraform state file. The `terraform.tfstate` file uses the old version format `3` and old terraform version `0.12.31` (`rm terraform.tfstate`)
 - Initialize terraform with the command below
 
 ```bash
 terraform init
 ```
+
+__NOTE__: When you run the __init__ command, you will get the error below. The reason is that terraformer uses __terraform__ version __3__.
+
+```text
+Initializing the backend...
+│ Error: Invalid legacy provider address
+│ This configuration or its associated state refers to the unqualified provider "aws".
+│ You must complete the Terraform 0.13 upgrade process before upgrading to later versions.
+```
+
+- Upgrade to terraform version __4__
+
+1. Backup old __terraform.tfstate__ file
+
+    ```bash
+    cp terraform.tfstate terraform.tfstate.backup
+    ```
+
+2. Upgrade state file
+
+    ```bash
+    terraform state replace-provider registry.terraform.io/-/aws registry.terraform.io/hashicorp/aws
+    ```
 
 - Preview the changes with the command below
 
@@ -98,7 +119,7 @@ terraform apply
 
 ---
 
-#### Add PoC Ubuntu Docker
+#### PoC Ubuntu Docker
 
 ##### Pull Ubuntu image
 
