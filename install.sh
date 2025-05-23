@@ -123,13 +123,22 @@ install_terraformer_macos() {
 create_versions_tf() {
   echo "Creating versions.tf file..."
   cat <<EOL > versions.tf
-terraform {
+erraform {
   required_providers {
     aws = {
-      source = "hashicorp/aws"
+      source  = "hashicorp/aws"
       version = "~> 5.91.0"
     }
+    cloudflare = {
+      source  = "cloudflare/cloudflare"
+      version = "3.12.2"
+    }
+    digitalocean = {
+      source  = "digitalocean/digitalocean"
+      version = "~> 2.38.0"
+    }
   }
+
   required_version = ">= 0.13"
 }
 EOL
